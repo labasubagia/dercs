@@ -30,27 +30,24 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function staffDashboard(){
+    public function staffDashboard()
+    {
         $id = Auth::id();
 
-        $countuser = User::where('userType', '=' , 'customer')->count();
+        $countuser = User::where('userType', '=', 'customer')->count();
         return view("staff.staffDashboard", compact("countuser"));
     }
 
-    public function customerHomepage(){
+    public function customerHomepage()
+    {
 
         return view("customer.customerHomepage");
     }
 
-    public function riderHomepage(){
-        $id = Auth::id();
-        
-
-
-        $status = DB::select("select * from users where id = '$id'");
-
-        return view("rider.riderHomepage", compact('status'));
-
-        
+    public function riderHomepage()
+    {
+        $user = Auth::user();
+        $isRiderActive = $user->status && $user->licensePhoto;
+        return view("rider.riderHomepage", compact('isRiderActive'));
     }
 }
