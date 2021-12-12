@@ -12,18 +12,16 @@
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
         <u style="font-size:large;"><h2>Rider Homepage</h2></u>
-        <br>       
+        <br>
         <div class="row">
             <div class="col"><center>
                 <h4>Delivery Jobs</h4>
                 <i class="fa fa-tasks" aria-hidden="true" style='font-size:36px'></i>
                 <h5></h5>
                 <br>
-                @foreach($status as $row)
-                    @if($row->status == 1)
+                @if ($isRiderActive)
                     <center><a href="servicePage"><button type="button" class="btn btn-warning">View Jobs</button></a></center>
-                    @endif
-                @endforeach
+                @endif
             </center></div>
 
             <div class="col"><center>
@@ -42,7 +40,7 @@
                 <br><br>
                 <a href="riderLicenseView"><button class="btn btn-warning">Upload License</button></a>
             </center></div>
-        </div>  
+        </div>
 
     </div>
 </body>
