@@ -55,10 +55,10 @@ class DeliveryController extends Controller
     //to accept job
     public function accept(Request $req)
     {
-        $service = Service::findOrFail($req->get('id'));
-        $service->status = true;
-        $service->PIC = Auth::id();
-        $service->save();
+        Service::where('id', $req->get('id'))->update([
+            'status' => true,
+            'PIC' => Auth::id(),
+        ]);
         return $this->viewStatus();
     }
 
@@ -72,11 +72,11 @@ class DeliveryController extends Controller
     //update service progress
     public function updateProgress(Request $req)
     {
-        $service = Track::findOrFail($req->get('id'));
-        $service->trackDate = $req->get('date');
-        $service->trackTime = $req->get('time');
-        $service->trackProgress = $req->get('trackProgress');
-        $service->save();
+        Track::where('id', $req->get('id'))->update([
+            'trackDate' => $req->get('date'),
+            'trackTime' => $req->get('time'),
+            'trackProgress' => $req->get('trackProgress'),
+        ]);
         return $this->viewStatus();
     }
 
