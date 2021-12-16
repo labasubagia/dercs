@@ -35,16 +35,18 @@ class DeliveryController extends Controller
     //accept job page
     public function viewStatus()
     {
-        $id = Auth::id();
-        $unaccepted = DB::select("SELECT users.phoneNo, tracks.id, tracks.pickupAddress
-                                FROM users JOIN services ON users.id = services.userID
-                                JOIN tracks ON tracks.id = services.id
-                                WHERE services.status = 0");
+        $unaccepted = User::where('services.status', 0)
+            ->select("users.phoneNo", "tracks.id", "tracks.pickupAddress")
+            ->join("services", "services.userID", "=", "users.id")
+            ->join("tracks", "tracks.id", "=", "services.id")
+            ->get();
 
-        $accepted = DB::select("SELECT users.phoneNo, tracks.id, tracks.pickupAddress, tracks.trackProgress
-                                FROM users JOIN services ON users.id = services.userID
-                                JOIN tracks ON tracks.id = services.id
-                                WHERE services.status = 1 AND services.PIC = '$id'");
+        $accepted = User::where('services.status', 1)
+            ->where("services.PIC", Auth::id())
+            ->select("users.phoneNo", "tracks.id", "tracks.pickupAddress", "tracks.trackProgress")
+            ->join("services", "services.userID", "=", "users.id")
+            ->join("tracks", "tracks.id", "=", "services.id")
+            ->get();
 
         return view('rider.servicePage', compact('unaccepted', 'accepted'));
     }
