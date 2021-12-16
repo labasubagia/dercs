@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Service;
 use App\Models\Track;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DeliveryController extends Controller
