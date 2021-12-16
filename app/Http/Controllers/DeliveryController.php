@@ -55,24 +55,17 @@ class DeliveryController extends Controller
     //to accept job
     public function accept(Request $req)
     {
-
         $service = Service::findOrFail($req->get('id'));
         $service->status = true;
         $service->PIC = Auth::id();
         $service->save();
-
         return $this->viewStatus();
     }
 
     //view service progress
-    public function viewAcceptedTask(Request $req)
+    public function viewAcceptedTask(Request $req, $id)
     {
-        $id = Auth::id();
-        $trackID = $req->id;
-        $info = DB::select("select * from tracks where id = '$trackID'");
-
-        $update = DB::select("update tracks set serviceID = '$trackID' where id = '$trackID'");
-
+        $info = Track::find($id);
         return view('rider.deliveryProgress', compact('info'));
     }
 

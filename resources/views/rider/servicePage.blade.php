@@ -32,7 +32,7 @@
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
         <center><u style="font-size:large;"><h2>Unaccepted Task List</h2></u></center>
-        <br> 
+        <br>
         <table border="1px" style="margin-left: auto; margin-right: auto;">
                 <tr>
                     <th style="width:100px">No.</th>
@@ -57,10 +57,10 @@
                 <tr>
                 @php ($i++)
                 @endforeach
-        </table> 
+        </table>
         <br><br>
         <center><u style="font-size:large;"><h2>Accepted Task List</h2></u></center>
-        <br> 
+        <br>
         <table border="1px"  style="margin-left: auto; margin-right: auto;">
                 <tr>
                     <th style="width:100px">No.</th>
@@ -71,25 +71,28 @@
                 </tr>
                 @php ($i = 1)
 
-                @foreach ($accepted as $row1)
+                @foreach ($accepted as $row)
                 <tr>
                     <td><input type="text" value="{{$i}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row1->pickupAddress}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row1->phoneNo}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row1->trackProgress}}" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$row->pickupAddress}}" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$row->phoneNo}}" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$row->trackProgress}}" class="noborder" readonly></td>
                     <td>
-                        <form action="viewAcceptedTask" method="post">
+                        {{-- <form action="viewAcceptedTask" method="post">
                         @csrf
-                            <input type="hidden" value="{{$row1->id}}" name="id">
-                            @if($row1->trackProgress != 'Received' && $row1->trackProgress != 'Confirm Received')
+                            <input type="hidden" value="{{$row->id}}" name="id">
+                            @if($row->trackProgress != 'Received' && $row->trackProgress != 'Confirm Received')
                                 <button class="btn btn-warning" type="submit">Update</button>
                             @endif
-                        </form>
+                        </form> --}}
+                        @if (!in_array($row->trackProgress, ['Received', 'Confirm Received']))
+                            <a href="/viewAcceptedTask/{{$row->id}}" class="btn btn-warning">Update</a>
+                        @endif
                     </td>
                 <tr>
                 @php ($i++)
                 @endforeach
-        </table> 
+        </table>
     </div>
     <a href="/riderHomepage"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>
