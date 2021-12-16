@@ -36,6 +36,7 @@ class DeliveryController extends Controller
     public function viewStatus()
     {
         $unaccepted = User::where('services.status', 0)
+            ->where('services.repairProgress', 'Done')
             ->select("users.phoneNo", "tracks.id", "tracks.pickupAddress")
             ->join("services", "services.userID", "=", "users.id")
             ->join("tracks", "tracks.id", "=", "services.id")
@@ -54,11 +55,11 @@ class DeliveryController extends Controller
     //to accept job
     public function accept(Request $req)
     {
-        $PIC = Auth::id();
 
-        $trackID = $req->id;
-        $update = DB::select("update services set status = 1, PIC = '$PIC'
-                            where id = '$trackID'");
+        $service = Service::findOrFail($req->get('id'));
+        $service->status = true;
+        $service->PIC = Auth::id();
+        $service->save();
 
         return $this->viewStatus();
     }
