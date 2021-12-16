@@ -83,18 +83,15 @@ class DeliveryController extends Controller
 
     public function sViewTrackingList()
     {
-        $info = DB::select("select * from services");
-
+        $info = Service::all();
         return view('staff.staffList', compact('info'));
     }
 
     public function sViewProgress(Request $req)
     {
-        $serviceID = $req->id;
-
-        $info = DB::select("select * from tracks
-                            inner join services on tracks.id = services.id
-                            where tracks.id = '$serviceID'");
+        $info = Track::where('tracks.serviceID', $req->get('id'))
+            ->join('services', 'services.id', '=', 'tracks.serviceID')
+            ->get();
         return view('staff.staffProgress', compact('info'));
     }
 
