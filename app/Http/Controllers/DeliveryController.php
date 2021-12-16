@@ -72,14 +72,11 @@ class DeliveryController extends Controller
     //update service progress
     public function updateProgress(Request $req)
     {
-        $time = $req->time;
-        $date = $req->date;
-        $trackID = $req->id;
-        $trackProgress = $req->trackProgress;
-
-        $update = DB::select("update tracks set trackDate = '$date', trackTime = '$time',
-                            trackProgress = '$trackProgress' where id = '$trackID'");
-
+        $service = Track::findOrFail($req->get('id'));
+        $service->trackDate = $req->get('date');
+        $service->trackTime = $req->get('time');
+        $service->trackProgress = $req->get('trackProgress');
+        $service->save();
         return $this->viewStatus();
     }
 
