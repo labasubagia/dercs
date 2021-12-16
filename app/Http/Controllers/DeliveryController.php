@@ -98,18 +98,14 @@ class DeliveryController extends Controller
     //staff receive item from rider
     public function receive(Request $req)
     {
-        $trackID = $req->id;
-        $result = "Confirm Received";
+        $trackId = $req->get('id');
 
-        $update = DB::select("update tracks set trackProgress = '$result'
-                            where id = '$trackID'");
+        Track::where('id', $trackId)->update(['trackProgress' => 'Confirm Received']);
 
-        $update1 = DB::select("update services set status = 2
-                            where id = '$trackID'");
+        $info = Track::where('tracks.id', $trackId)
+            ->join('services', 'services.id', 'tracks.serviceID')
+            ->get();
 
-        $info = DB::select("select * from tracks
-                           inner join services on tracks.id = services.id
-                           where tracks.id = '$trackID'");
         return view('staff.staffProgress', compact('info'));
     }
 
