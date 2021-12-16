@@ -112,10 +112,7 @@ class DeliveryController extends Controller
     //customer received repaired item from rider
     public function returnedDevice(Request $req)
     {
-        $trackID = $req->trackID;
-
-        $update = DB::select("update tracks set trackProgress = 'Returned' where id = '$trackID'");
-
+        Track::where('id', $req->get('trackID'))->update(['trackProgress' => 'Returned']);
         return $this->cViewTrackingList();
     }
 }
