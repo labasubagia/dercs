@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,9 +49,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('verified');
 
 
-Route::middleware(['auth'])->group(function(){
+Route::middleware(['auth'])->group(function () {
 
-    Route::middleware(['redirectCustomer'])->group(function(){
+    Route::middleware(['redirectCustomer'])->group(function () {
         Route::post('/customerHomepage', [App\Http\Controllers\HomeController::class, 'customerHomepage']);
         Route::get('/customerHomepage', [App\Http\Controllers\HomeController::class, 'customerHomepage']);
 
@@ -79,13 +80,12 @@ Route::middleware(['auth'])->group(function(){
         Route::get('/paymentSuccessful/{serviceID}/{total}', [App\Http\Controllers\PaymentController::class, 'addPaymentPayPal']);
 
         Route::post('/returned', [App\Http\Controllers\DeliveryController::class, 'returnedDevice']);
-
     });
 
-    Route::middleware(['redirectStaff'])->group(function(){
+    Route::middleware(['redirectStaff'])->group(function () {
         Route::post('/staffDashboard', [App\Http\Controllers\HomeController::class, 'staffDashboard']);
         Route::get('/staffDashboard', [App\Http\Controllers\HomeController::class, 'staffDashboard']);
-        
+
         Route::get('/staffProfile', [App\Http\Controllers\ProfileController::class, 'staffProfile']);
 
         Route::post('/updatedStaffProfile', [App\Http\Controllers\ProfileController::class, 'updateStaffProfile']);
@@ -116,7 +116,7 @@ Route::middleware(['auth'])->group(function(){
         Route::post('/receive', [App\Http\Controllers\DeliveryController::class, 'receive']);
     });
 
-    Route::middleware(['redirectRider'])->group(function(){
+    Route::middleware(['redirectRider'])->group(function () {
         Route::post('/riderHomepage', [App\Http\Controllers\HomeController::class, 'riderHomepage']);
         Route::get('/riderHomepage', [App\Http\Controllers\HomeController::class, 'riderHomepage']);
 
@@ -132,16 +132,8 @@ Route::middleware(['auth'])->group(function(){
 
         Route::post('/accept', [App\Http\Controllers\DeliveryController::class, 'accept']);
 
-        Route::post('/viewAcceptedTask', [App\Http\Controllers\DeliveryController::class, 'viewAcceptedTask']);
+        Route::get('/viewAcceptedTask/{id}', [App\Http\Controllers\DeliveryController::class, 'viewAcceptedTask']);
 
         Route::post('/updateTrack', [App\Http\Controllers\DeliveryController::class, 'updateProgress']);
     });
-
 });
-
-
-
-
-
-
-

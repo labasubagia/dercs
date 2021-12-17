@@ -31,8 +31,8 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <u style="font-size:large;"><h2>Tracking List</h2></u> 
-        <br> 
+        <u style="font-size:large;"><h2>Tracking List</h2></u>
+        <br>
         <table border="1px">
                 <tr>
                     <th>No.</th>
@@ -57,7 +57,7 @@
                 <tr>
                 @php ($i++)
                 @endforeach
-            </table> 
+            </table>
     </div>
     <a href="/staffDashboard"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>
