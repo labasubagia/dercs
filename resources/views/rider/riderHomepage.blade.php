@@ -21,6 +21,8 @@
                 <br>
                 @if ($isRiderActive)
                     <center><a href="servicePage"><button type="button" class="btn btn-warning">View Jobs</button></a></center>
+                @else
+                    <p class="text-danger">Please Upload Your Driver License</p>
                 @endif
             </center></div>
 
