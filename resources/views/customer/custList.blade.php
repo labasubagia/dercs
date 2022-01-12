@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>{{config('app.name')}}</title>
     @include('layouts.bootstrap')
@@ -14,15 +14,6 @@
                 bottom: 15px;
                 border-radius: 50%;
         }
-        th {
-            text-align: center;
-        }
-        td {
-            text-align: center;
-        }
-        input {
-                text-align: center;
-        }
         .noborder {
             border: 0px none;
         }
@@ -31,33 +22,37 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <u style="font-size:large;"><h2>Tracking List</h2></u> 
+        <p style="font-size:large;"><h2>
+            <a href="/customerHomepage"><i class="text-secondary fas fa-arrow-left"></i></a> Tracking List</h2></p> 
         <br> 
-        <table border="1px">
-                <tr>
-                    <th>No.</th>
-                    <th>Device</th>
-                    <th style="width:200px">Action</th>
-                </tr>
-                @php ($i = 1)
-
-                @foreach ($info as $row1)
-                <tr>
-                    <td><input type="text" value="{{$i}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row1->device}}" class="noborder" readonly></td>
-                    <td>
-                        <form action="cViewProgress" method="post">
-                        @csrf
-                            <input type="hidden" value="{{$row1->id}}" name="id">
-                            <button class="btn btn-warning" type="submit">Status</button>
-                        </form>
-                    </td>
-                <tr>
-                @php ($i++)
-                @endforeach
-            </table> 
+        <div class="row">
+            <div class="col-12 table-responsive">
+                <table class="table">
+                        <tr class="bg-info text-white">
+                            <th>No.</th>
+                            <th>Device</th>
+                            <th style="width:200px">Action</th>
+                        </tr>
+                        @php ($i = 1)
+        
+                        @foreach ($info as $row1)
+                        <tr>
+                            <td><input type="text" value="{{$i}}" class="noborder" readonly></td>
+                            <td><input type="text" value="{{$row1->device}}" class="noborder" readonly></td>
+                            <td>
+                                <form action="cViewProgress" method="post">
+                                @csrf
+                                    <input type="hidden" value="{{$row1->id}}" name="id">
+                                    <button class="btn btn-info text-white" type="submit">Status</button>
+                                </form>
+                            </td>
+                        <tr>
+                        @php ($i++)
+                        @endforeach
+                </table> 
+            </div>
+        </div>
     </div>
-    <a href="/customerHomepage"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';
