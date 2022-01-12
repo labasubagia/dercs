@@ -26,7 +26,7 @@
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
         <center><u style="font-size:large;"><h2>Update Task</h2></u></center>
-        <br>               
+        <br>
         <table border="1px solid black" style="margin-left:auto;margin-right:auto;">
                 <tr>
                     <th style="width:200px">Date</th>
@@ -34,30 +34,31 @@
                     <th style="width:200px">Status</th>
                     <th style="width:200px">Action</th>
                 </tr>
-                
-                @foreach ($info as $row)
-                <form action="updateTrack" method="post">
+
+                <form action="/updateTrack" method="post">
                 @csrf
                 <tr>
                     <td><input type="date" name="date" required></td>
                     <td><input type="time" name="time" required></td>
                     <td>
+                        @php
+                        $status = ['In Progress', 'Picked Up', 'Received'];
+                        @endphp
                         <select name="trackProgress">
-                            <option value="{{$row->trackProgress}}">{{$row->trackProgress}}</option>
                             <option value="" disabled></option>
-                            <option value="Picked Up">Picked Up</option>
-                            <option value="Received">Received</option>
+                            @foreach ($status as $item)
+                                <option {{$info->trackProgress == $item ? 'selected':''}}>{{$item}}</option>
+                            @endforeach
                         </select>
                     </td>
-                    <input type="hidden" name="id" value="{{$row->id}}">
+                    <input type="hidden" name="id" value="{{$info->id}}">
                     <td><input type="submit" value="Update" class="btn btn-warning"></td>
                 <tr>
-                @endforeach
                 </form>
-                
-        </table> 
+
+        </table>
         <br><br>
-        <center><a href="servicePage"><button class="btn btn-warning">Back</button></a></center>
+        <center><a href="/servicePage"><button class="btn btn-warning">Back</button></a></center>
     </div>
 </body>
 </html>
