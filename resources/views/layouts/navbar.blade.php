@@ -1,50 +1,41 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <!-- Brand/logo -->
-  <a class="navbar-brand" href="/">
-    <img src="{{url('/images/logo.png')}}" alt="Company Logo" style="width:70px; height:50px">&emsp;{{config('app.name')}}
-  </a>&emsp;&emsp;
-  
-  <!-- Left Side Of Navbar -->
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="/partnership">Partnership</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/help">Help</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/aboutus">About Us</a>
-    </li>
-  </ul>
-  
-  <!-- Right Side Of Navbar -->
-  <ul class="navbar-nav ml-auto">
-        <!-- Authentication Links -->
-          @guest
-          @if (Route::has('login'))
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-            </li>
-          @endif
-                              
-          @if (Route::has('register'))
-            <li class="nav-item">
-              <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-            </li>
-          @endif
-          @else
-            <li class="nav-item dropdown">
-              <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                {{ Auth::user()->username }}
-              </a>
+    <!-- Brand/logo -->
+    <a class="navbar-brand" href="/">
+        <img src="{{url('/images/logo.png')}}" alt="Company Logo" style="width:70px; height:50px">&emsp;{{config('app.name')}}
+    </a>&emsp;&emsp;
 
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+    <!-- Left Side Of Navbar -->
+    <ul class="navbar-nav">
+    </ul>
+
+    <!-- Right Side Of Navbar -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Authentication Links -->
+        @guest
+        @if (Route::has('login'))
+            <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+            </li>
+        @endif
+
+        @if (Route::has('register'))
+            <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            </li>
+        @endif
+        @else
+            <li class="nav-item dropdown">
+            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                {{ Auth::user()->username }}
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                  @csrf
+                @csrf
                 </form>
-              </div>
+            </div>
             </li>
-          @endguest
-  </ul>
+        @endguest
+    </ul>
 </nav>
