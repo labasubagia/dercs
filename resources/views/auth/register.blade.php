@@ -46,7 +46,7 @@
 
                             <div class="col-md-6">
                                 <select name="userType" id="userType" class="form-control @error('userType') is-invalid @enderror" required>
-                                    <option value=""></option>
+                                    <option value="Staff">Staff</option>
                                     <option value="Customer">Customer</option>
                                     <option value="Rider">Rider</option>
                                 </select>

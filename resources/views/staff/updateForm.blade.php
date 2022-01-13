@@ -15,25 +15,25 @@
         <br>       
         <form action="updateForm" method="post">
             @csrf
-            @foreach($info as $row)
+            
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Username&emsp;&ensp;</span>
                 </div>
-                <input type="text" class="form-control" name="username" value="{{$row->username}}" disabled>
+                <input type="text" class="form-control" name="username" value="{{$info->username}}" disabled>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Device&emsp;&emsp;&emsp;</span>
                 </div>
-                <input type="text" class="form-control" name="device" value="{{$row->device}}" disabled>
+                <input type="text" class="form-control" name="device" value="{{$info->device}}" disabled>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Status&emsp;&emsp;&emsp;</span>
                 </div>
                 <select name="repairStatus" class="form-control" required>
-                    <option value="{{$row->repairStatus}}">{{$row->repairStatus}}</option>
+                    <option value="{{$info->repairStatus}}">{{$info->repairStatus}}</option>
                     <option value=""></option>
                     <option value="Repairable">Repairable</option>
                     <option value="Not Repairable">Not Repairable</option>
@@ -44,7 +44,7 @@
                     <span class="input-group-text">Progress&emsp;&emsp;</span>
                 </div>
                 <select name="repairProgress" class="form-control" required>
-                    <option value="{{$row->repairProgress}}">{{$row->repairProgress}}</option>
+                    <option value="{{$info->repairProgress}}">{{$info->repairProgress}}</option>
                     <option value="" disabled></option>
                     <option value="Pending">Pending</option>
                     <option value="In Progress">In Progress</option>
@@ -55,21 +55,21 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text">EstimateCost</span>
                 </div>
-                <input type="text" class="form-control" name="estimateCost" value="{{$row->estimateCost}}" required>
+                <input type="text" class="form-control" name="estimateCost" value="{{$info->estimateCost}}" required>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Reason&emsp;&emsp;&ensp;</span>
                 </div>
-                <input type="text" class="form-control" name="reason" value="{{$row->reason}}" required>
+                <input type="text" class="form-control" name="reason" value="{{$info->reason}}" required>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Detail&emsp;&emsp;&emsp;</span>
                 </div>
-                <input type="text" class="form-control" name="detail" value="{{$row->detail}}" required>
+                <input type="text" class="form-control" name="detail" value="{{$info->detail}}" required>
             </div>
-            <input type="hidden" name="id" value="{{$row->id}}">
+            <input type="hidden" name="id" value="{{$info->id}}">
             
             <br>
             <center>
@@ -77,7 +77,7 @@
             </center>
             
         </form>
-        @endforeach
+        
     </div>
     <script>
         var msg = '{{Session::get('alert')}}';
