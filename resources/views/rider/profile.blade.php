@@ -21,7 +21,7 @@
     <div class="container" style="margin-top: 30px">
         <h2>Rider Profile</h2>
         <br>
-        <form action="updatedCustomerProfile" method="post">
+        <form action="updatedRiderProfile" method="post">
             @csrf
             @foreach($riderInfo as $row)
             <div class="input-group mb-3">

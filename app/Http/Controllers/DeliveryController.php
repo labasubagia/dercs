@@ -34,16 +34,28 @@ class DeliveryController extends Controller
     //accept job page
     public function viewStatus()
     {
+        $selected = [
+            "users.phoneNo",
+            "users.email",
+            "services.device",
+            "services.estimateCost",
+            "tracks.id",
+            "tracks.pickupAddress",
+            "tracks.trackProgress",
+            "tracks.trackDate",
+            "tracks.trackTime",
+        ];
+
         $unaccepted = User::where('services.status', 0)
             ->where('services.repairProgress', 'Done')
-            ->select("users.phoneNo", "tracks.id", "tracks.pickupAddress")
+            ->select($selected)
             ->join("services", "services.userID", "=", "users.id")
             ->join("tracks", "tracks.id", "=", "services.id")
             ->get();
 
         $accepted = User::where('services.status', 1)
             ->where("services.PIC", Auth::id())
-            ->select("users.phoneNo", "tracks.id", "tracks.pickupAddress", "tracks.trackProgress")
+            ->select($selected)
             ->join("services", "services.userID", "=", "users.id")
             ->join("tracks", "tracks.id", "=", "services.id")
             ->get();
@@ -58,7 +70,7 @@ class DeliveryController extends Controller
             'status' => true,
             'PIC' => Auth::id(),
         ]);
-        return $this->viewStatus();
+        return redirect()->back();
     }
 
     //view service progress
@@ -76,7 +88,7 @@ class DeliveryController extends Controller
             'trackTime' => $req->get('time'),
             'trackProgress' => $req->get('trackProgress'),
         ]);
-        return $this->viewStatus();
+        return redirect('/servicePage');
     }
 
 
