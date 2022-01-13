@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>{{config('app.name')}}</title>
     @include('layouts.bootstrap')
@@ -31,68 +31,77 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <center><u style="font-size:large;"><h2>Unaccepted Task List</h2></u></center>
+        <h2 class="font-large text-center">Available Task List</h2>
         <br>
-        <table border="1px" style="margin-left: auto; margin-right: auto;">
-                <tr>
-                    <th style="width:100px">No.</th>
-                    <th style="width:200px">Pick Up Address</th>
-                    <th style="width:200px">Customer Phone No.</th>
-                    <th style="width:200px">Action</th>
+        <div class="col-12 table-responsive">
+            <table class="table">
+                <tr class="bg-info text-white">
+                    <th>No.</th>
+                    <th>Email</th>
+                    <th>Device</th>
+                    <th>Pick Up Address</th>
+                    <th>Customer Phone No.</th>
+                    <th>Action</th>
                 </tr>
                 @php ($i = 1)
 
                 @foreach ($unaccepted as $row)
                 <tr>
-                    <td><input type="text" value="{{$i}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row->pickupAddress}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row->phoneNo}}" class="noborder" readonly></td>
+                    <td>{{$i}}</td>
+                    <td>{{$row->email}}</td>
+                    <td>{{$row->device}}</td>
+                    <td>{{$row->pickupAddress}}</td>
+                    <td>{{$row->phoneNo}}</td>
                     <td>
                         <form action="accept" method="post">
                         @csrf
                             <input type="hidden" value="{{$row->id}}" name="id">
-                            <button class="btn btn-warning" type="submit">Accept</button>
+                            <button class="btn btn-sm btn-info" type="submit">Accept</button>
                         </form>
                     </td>
                 <tr>
                 @php ($i++)
                 @endforeach
-        </table>
+            </table>
+        </div>
         <br><br>
-        <center><u style="font-size:large;"><h2>Accepted Task List</h2></u></center>
+        <h2 class="font-large text-center">Accepted Task List</h2>
         <br>
-        <table border="1px"  style="margin-left: auto; margin-right: auto;">
-                <tr>
-                    <th style="width:100px">No.</th>
-                    <th style="width:200px">Pick Up Address</th>
-                    <th style="width:200px">Customer Phone No.</th>
-                    <th style="width:200px">Status</th>
-                    <th style="width:200px">Action</th>
+        <div class="col-12 table-responsive">
+            <table class="table">
+                <tr class="bg-info text-white">
+                    <th>No.</th>
+                    <th>Email</th>
+                    <th>Device</th>
+                    <th>Address</th>
+                    <th>Customer Phone</th>
+                    <th>Track Status</th>
+                    <th>Last Update</th>
+                    <th>Action</th>
                 </tr>
                 @php ($i = 1)
 
                 @foreach ($accepted as $row)
                 <tr>
-                    <td><input type="text" value="{{$i}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row->pickupAddress}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row->phoneNo}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row->trackProgress}}" class="noborder" readonly></td>
+                    <td>{{$i}}</td>
+                    <td>{{$row->email}}</td>
+                    <td>{{$row->device}}</td>
+                    <td>{{$row->pickupAddress}}</td>
+                    <td>{{$row->phoneNo}}</td>
+                    <td>{{$row->trackProgress}}</td>
                     <td>
-                        {{-- <form action="viewAcceptedTask" method="post">
-                        @csrf
-                            <input type="hidden" value="{{$row->id}}" name="id">
-                            @if($row->trackProgress != 'Received' && $row->trackProgress != 'Confirm Received')
-                                <button class="btn btn-warning" type="submit">Update</button>
-                            @endif
-                        </form> --}}
+                        {{\Carbon\Carbon::parse("{$row->trackDate} {$row->trackTime}")->format('d/m/Y H:i')}}
+                    </td>
+                    <td>
                         @if (!in_array($row->trackProgress, ['Received', 'Confirm Received']))
-                            <a href="/viewAcceptedTask/{{$row->id}}" class="btn btn-warning">Update</a>
+                            <a href="/viewAcceptedTask/{{$row->id}}" class="btn btn-sm btn-info">Update</a>
                         @endif
                     </td>
                 <tr>
                 @php ($i++)
                 @endforeach
-        </table>
+            </table>
+        </div>
     </div>
     <a href="/riderHomepage"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>

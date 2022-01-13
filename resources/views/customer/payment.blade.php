@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" /> <!-- Optimal Internet Explorer compatibility -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -34,78 +34,82 @@
 <body>
     @include('layouts.navbar')
     <div class="container topmargin">
-        <u style="font-size:large;"><h2>Payment Information</h2></u>
+        <p style="font-size:large;"><h2>
+            <a href="/viewItemList"><i class="text-secondary fas fa-arrow-left"></i></a> Payment Information</h2></p>
         <br>
-            <table>
-            @foreach ($info as $row)
-                <tr>
-                    <th>Username :</th>
-                    <td><input type="text" value="{{$row->username}}" class="noborder" readonly></td>
-                </tr>
-                <tr>
-                    <th>Total Price :</th>
-                    <td><input type="text" value="{{$row->estimateCost}}" class="noborder" readonly></td>
-                </tr>
-            
-
-                    <th>Choose payment method :</th>
-                    <td>
-                    <form action="cod" method="post">
-                        @csrf
-                        <input type="hidden" name="serviceID" value="{{$row->id}}">
-                        <input type="hidden" name="paymentMethod" value="COD">
-                        <input type="hidden" name="estimateCost" value="{{$row->estimateCost}}">
-                        <button type="submit" class="btn btn-danger" style="width: 100%; height: 10%">COD</button>
-                    </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td>
-                        <div id="paypal-button-container"></div>
-                        <script>
-                            paypal.Buttons({
-                                createOrder: function(data, actions) {
-                                // This function sets up the details of the transaction, including the amount and line item details.
-                                    return actions.order.create({
-                                        purchase_units: [{
-                                            amount: {
-                                                currency_code: 'MYR',
-                                                value: '{{$row->estimateCost}}',
-                                            },
-                                            shipping: {
-                                                name: {
-                                                    full_name: '{{$row->username}}'
-                                                },
-                                            address: {
-                                                address_line_1: '{{$row->address}}',
-                                                address_line_2: 'unknown',
-                                                admin_area_2: 'unknown',
-                                                admin_area_1: 'unknown',
-                                                postal_code: 'unknown',
-                                                country_code: 'MY'
-                                            }
-                                            }
-                                            
-                                        }]
-                                    });
-                                },
-                                onApprove: function(data, actions) {
-                                    // This function captures the funds from the transaction.
-                                    return actions.order.capture().then(function(details) {
-                                        // This function shows a transaction success message to your buyer.
-                                        alert('Transaction Successful!');
-                                        window.location.href = "/paymentSuccessful/{{$row->id}}/{{$row->estimateCost}}";
-                                    });
-                                }
-                            }).render('#paypal-button-container');
-                            //This function displays Smart Payment Buttons on your web page.
-                        </script>
-                    </td>               
-            </table>
-            @endforeach
-            <br><br>
-            <center><a href="viewItemList"><button class="btnb btn-warning">Back</button></center>
+        <div class="row">
+            <div class="col-12">
+                <table class="table">
+                    @foreach ($info as $row)
+                        <tr>
+                            <th>Username :</th>
+                            <td><input type="text" value="{{$row->username}}" class="noborder" readonly></td>
+                        </tr>
+                        <tr>
+                            <th>Total Price :</th>
+                            <td><input type="text" value="{{$row->estimateCost}}" class="noborder" readonly></td>
+                        </tr>
+                    
+    
+                            <th>Pay Now :</th>
+                            <td>
+                            <form action="cod" method="post">
+                                @csrf
+                                <input type="hidden" name="serviceID" value="{{$row->id}}">
+                                <input type="hidden" name="paymentMethod" value="COD">
+                                <input type="hidden" name="estimateCost" value="{{$row->estimateCost}}">
+                                <button type="submit" class="btn btn-info text-white" style="height: 10%">Confirm</button>
+                            </form>
+                            </td>
+                        </tr>
+                        {{-- <tr>
+                            <th></th>
+                            <td>
+                                <div id="paypal-button-container"></div>
+                                <script>
+                                    paypal.Buttons({
+                                        createOrder: function(data, actions) {
+                                        // This function sets up the details of the transaction, including the amount and line item details.
+                                            return actions.order.create({
+                                                purchase_units: [{
+                                                    amount: {
+                                                        currency_code: 'MYR',
+                                                        value: '{{$row->estimateCost}}',
+                                                    },
+                                                    shipping: {
+                                                        name: {
+                                                            full_name: '{{$row->username}}'
+                                                        },
+                                                    address: {
+                                                        address_line_1: '{{$row->address}}',
+                                                        address_line_2: 'unknown',
+                                                        admin_area_2: 'unknown',
+                                                        admin_area_1: 'unknown',
+                                                        postal_code: 'unknown',
+                                                        country_code: 'MY'
+                                                    }
+                                                    }
+                                                    
+                                                }]
+                                            });
+                                        },
+                                        onApprove: function(data, actions) {
+                                            // This function captures the funds from the transaction.
+                                            return actions.order.capture().then(function(details) {
+                                                // This function shows a transaction success message to your buyer.
+                                                alert('Transaction Successful!');
+                                                window.location.href = "/paymentSuccessful/{{$row->id}}/{{$row->estimateCost}}";
+                                            });
+                                        }
+                                    }).render('#paypal-button-container');
+                                    //This function displays Smart Payment Buttons on your web page.
+                                </script>
+                            </td>  
+                        </tr>              --}}
+                    @endforeach
+                </table>
+            </div>
+        </div>
     </div>
 </body>
 </html>
