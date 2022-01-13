@@ -19,8 +19,8 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <u style="font-size:large;"><h2>Rider Profile</h2></u>
-        <br>       
+        <h2>Rider Profile</h2>
+        <br>
         <form action="updatedCustomerProfile" method="post">
             @csrf
             @foreach($riderInfo as $row)
@@ -49,7 +49,7 @@
                 <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="{{$row->phoneNo}}">
             </div>
             <center>
-                <button type="submit" class="btn btn-warning">Update</button>
+                <button type="submit" class="btn btn-info">Update</button>
             </center>
             @endforeach
         </form>

@@ -22,14 +22,14 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <u style="font-size:large;"><h2>Rider License</h2></u>
+        <h2 class="font-large">Rider License</h2>
         <br>
         <h4>Please name your license photo as your user ID according to your profile.</h4><br>
         <form action="riderLicenseUpload" method="post" enctype="multipart/form-data">
             @csrf
             <input type="file" class="spacing" name="image" id="image"><br><br>
             <input type="hidden" name="status" value="1">
-            <button type="submit" class="btn btn-warning spacing">Upload</button>
+            <button type="submit" class="btn btn-info spacing">Upload</button>
         </form>
         <br><br>
         <ul>

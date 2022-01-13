@@ -31,10 +31,11 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <center><u style="font-size:large;"><h2>Unaccepted Task List</h2></u></center>
+        <h2 class="font-large text-center">Unaccepted Task List</h2>
         <br>
-        <table border="1px" style="margin-left: auto; margin-right: auto;">
-                <tr>
+        <div class="col-12 table-responsive">
+            <table class="table">
+                <tr class="bg-info text-white">
                     <th style="width:100px">No.</th>
                     <th style="width:200px">Pick Up Address</th>
                     <th style="width:200px">Customer Phone No.</th>
@@ -51,18 +52,20 @@
                         <form action="accept" method="post">
                         @csrf
                             <input type="hidden" value="{{$row->id}}" name="id">
-                            <button class="btn btn-warning" type="submit">Accept</button>
+                            <button class="btn btn-info" type="submit">Accept</button>
                         </form>
                     </td>
                 <tr>
                 @php ($i++)
                 @endforeach
-        </table>
+            </table>
+        </div>
         <br><br>
-        <center><u style="font-size:large;"><h2>Accepted Task List</h2></u></center>
+        <h2 class="font-large text-center">Accepted Task List</h2>
         <br>
-        <table border="1px"  style="margin-left: auto; margin-right: auto;">
-                <tr>
+        <div class="col-12 table-responsive">
+            <table class="table">
+                <tr class="bg-info text-white">
                     <th style="width:100px">No.</th>
                     <th style="width:200px">Pick Up Address</th>
                     <th style="width:200px">Customer Phone No.</th>
@@ -86,13 +89,14 @@
                             @endif
                         </form> --}}
                         @if (!in_array($row->trackProgress, ['Received', 'Confirm Received']))
-                            <a href="/viewAcceptedTask/{{$row->id}}" class="btn btn-warning">Update</a>
+                            <a href="/viewAcceptedTask/{{$row->id}}" class="btn btn-info">Update</a>
                         @endif
                     </td>
                 <tr>
                 @php ($i++)
                 @endforeach
-        </table>
+            </table>
+        </div>
     </div>
     <a href="/riderHomepage"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>

@@ -25,10 +25,10 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <center><u style="font-size:large;"><h2>Update Task</h2></u></center>
+        <h2 class="text-center">Update Task</h2>
         <br>
-        <table border="1px solid black" style="margin-left:auto;margin-right:auto;">
-                <tr>
+        <table class="table">
+                <tr class="bg-info text-white">
                     <th style="width:200px">Date</th>
                     <th style="width:200px">Time</th>
                     <th style="width:200px">Status</th>
@@ -38,13 +38,13 @@
                 <form action="/updateTrack" method="post">
                 @csrf
                 <tr>
-                    <td><input type="date" name="date" required></td>
-                    <td><input type="time" name="time" required></td>
+                    <td><input class="form-control" type="date" name="date" required></td>
+                    <td><input class="form-control" type="time" name="time" required></td>
                     <td>
                         @php
                         $status = ['In Progress', 'Picked Up', 'Received'];
                         @endphp
-                        <select name="trackProgress">
+                        <select class="form-control" name="trackProgress">
                             <option value="" disabled></option>
                             @foreach ($status as $item)
                                 <option {{$info->trackProgress == $item ? 'selected':''}}>{{$item}}</option>
@@ -52,13 +52,13 @@
                         </select>
                     </td>
                     <input type="hidden" name="id" value="{{$info->id}}">
-                    <td><input type="submit" value="Update" class="btn btn-warning"></td>
+                    <td><input type="submit" value="Update" class="btn btn-info"></td>
                 <tr>
                 </form>
 
         </table>
         <br><br>
-        <center><a href="/servicePage"><button class="btn btn-warning">Back</button></a></center>
+        <center><a href="/servicePage"><button class="btn btn-info">Back</button></a></center>
     </div>
 </body>
 </html>
