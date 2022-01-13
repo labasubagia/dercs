@@ -11,7 +11,7 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <u style="font-size:large;"><h2>Rider Homepage</h2></u>
+        <p style="font-size:large;"><h2>Rider Homepage</h2></p>
         <br>
         <div class="row">
             <div class="col"><center>
@@ -20,7 +20,7 @@
                 <h5></h5>
                 <br>
                 @if ($isRiderActive)
-                    <center><a href="servicePage"><button type="button" class="btn btn-warning">View Jobs</button></a></center>
+                    <center><a href="servicePage"><button type="button" class="btn btn-info">View Jobs</button></a></center>
                 @else
                     <p class="text-danger">Please Upload Your Driver License</p>
                 @endif
@@ -31,7 +31,7 @@
                 <i class='fas fa-user-cog' style='font-size:36px'></i>
                 <h5>&nbsp;</h5>
                 <br>
-                <a href="riderProfile"><button class="btn btn-warning">Manage Profile</button></a>
+                <a href="riderProfile"><button class="btn btn-info">Manage Profile</button></a>
             </center></div>
         </div>
         <br><br><br>
@@ -40,7 +40,7 @@
                 <h4>Driving License</h4>
                 <i class='fas fa-user-cog' style='font-size:36px'></i>
                 <br><br>
-                <a href="riderLicenseView"><button class="btn btn-warning">Upload License</button></a>
+                <a href="riderLicenseView"><button class="btn btn-info">Upload License</button></a>
             </center></div>
         </div>
 
