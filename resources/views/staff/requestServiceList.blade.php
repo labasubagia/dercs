@@ -42,21 +42,21 @@
                 </tr>
                 @php ($i = 1)
 
-                @foreach ($info as $row1)
+                
                 <tr>
                     <td><input type="text" value="{{$i}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row1->username}}" name="username" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$row1->device}}" name="device" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$info1->username}}" name="username" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$info1->device}}" name="device" class="noborder" readonly></td>
                     <td>
                         <form action="viewUpdateForm" method="post">
                         @csrf
-                            <input type="hidden" value="{{$row1->id}}" name="id">
+                            <input type="hidden" value="{{$info1->id}}" name="id">
                             <button type="submit">View</button>
                         </form>
                         <form action="displayUpdateForm" method="post">
                         @csrf
-                        @if($row1->paymentStatus != 1)
-                            <input type="hidden" value="{{$row1->id}}" name="id">
+                        @if($info1->paymentStatus != 1)
+                            <input type="hidden" value="{{$info1->id}}" name="id">
                             <button class="btn btn-warning" type="submit">Update</button>    
                         @endif                    
                         </form>
@@ -64,7 +64,7 @@
                     </td>
                 <tr>
                 @php ($i++)
-                @endforeach
+                
             </table> 
         <table border="1px">
     </div>
