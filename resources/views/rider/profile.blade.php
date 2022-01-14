@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>{{config('app.name')}}</title>
     @include('layouts.bootstrap')
@@ -19,9 +19,9 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <u style="font-size:large;"><h2>Rider Profile</h2></u>
-        <br>       
-        <form action="updatedCustomerProfile" method="post">
+        <h2>Rider Profile</h2>
+        <br>
+        <form action="updatedRiderProfile" method="post">
             @csrf
             @foreach($riderInfo as $row)
             <div class="input-group mb-3">
@@ -49,7 +49,7 @@
                 <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="{{$row->phoneNo}}">
             </div>
             <center>
-                <button type="submit" class="btn btn-warning">Update</button>
+                <button type="submit" class="btn btn-info">Update</button>
             </center>
             @endforeach
         </form>

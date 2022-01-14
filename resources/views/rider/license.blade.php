@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>{{config('app.name')}}</title>
     @include('layouts.bootstrap')
@@ -22,21 +22,22 @@
 <body>
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
-        <u style="font-size:large;"><h2>Rider License</h2></u>
-        <br>
-        <h4>Please name your license photo as your user ID according to your profile.</h4><br>
+        <h2 class="font-large">Rider License</h2>
+        <p>Please upload your license photo</p>
         <form action="riderLicenseUpload" method="post" enctype="multipart/form-data">
             @csrf
-            <input type="file" class="spacing" name="image" id="image"><br><br>
             <input type="hidden" name="status" value="1">
-            <button type="submit" class="btn btn-warning spacing">Upload</button>
+
+            <input type="file" class="custom-form-input" name="image" id="image"><br><br>
+            <button type="submit" class="btn btn-info">Upload</button>
         </form>
-        <br><br>
-        <ul>
-            @foreach($image as $row)
-                <li>{{ $row->licensePhoto }}<br><img src="{{ asset('storage/licenseImages/'. $row->licensePhoto) }}"></li>
-            @endforeach
-        </ul>
+        <br>
+        @if ($image)
+            <p>Current License</p>
+            <img width="400px" src="{{ asset('storage/licenseImages/'. $image) }}">
+            <br>
+            <br>
+        @endif
     </div>
     <a href="/riderHomepage"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>

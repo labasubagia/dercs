@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>DERSC</title>
     @include('layouts.bootstrap')
 </head>
 <body>
@@ -17,7 +17,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <center>
-                    <div class="card-header"><h3>{{ __('Dashboard') }}</h3></div>
+                    <div class="card-header"><h3>Welcome {{ \Auth::user()->userType }}</h3></div>
 
                     <div class="card-body">
                         @if (session('status'))
@@ -26,23 +26,25 @@
                             </div>
                         @endif
 
-                        <h5>{{ __('You are logged in!') }}</h5>
-                        <br><br>
-                        
-                        <form action="/staffDashboard" method="post">
-                        @csrf
-                            <button type="submit" class="btn btn-warning"><strong>Staff Dashboard</strong></button>
-                        </form>
-                        <br><br>
-                        <form action="/customerHomepage" method="post">
-                        @csrf
-                            <button type="submit" class="btn btn-warning"><strong>Customer Homepage</strong></button>
-                        </form>
-                        <br><br>
+                        {{-- <h5>{{ __('You are logged in!') }}</h5> --}}
+                        @if (\Auth::user()->userType == 'Staff')
+                            <form action="/staffDashboard" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-info text-white"><strong>Let Starts</strong></button>
+                            </form>
+                            
+                        @elseif (\Auth::user()->userType == 'Rider')
                         <form action="/riderHomepage" method="post">
-                        @csrf
-                            <button type="submit" class="btn btn-warning"><strong>Rider Homepage</strong></button>
+                            @csrf
+                            <button type="submit" class="btn btn-info text-white"><strong>Let Starts</strong></button>
                         </form>
+                        
+                        @elseif (\Auth::user()->userType == 'Customer')
+                            <form action="/customerHomepage" method="post">
+                                @csrf
+                                <button type="submit" class="btn btn-info text-white"><strong>Let Starts</strong></button>
+                            </form>
+                        @endif
                     </div>
                     </center>
                 </div>
