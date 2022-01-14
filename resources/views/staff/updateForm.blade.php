@@ -12,10 +12,14 @@
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
         <u style="font-size:large;"><h2>Update Form</h2></u>
-        <br>       
+        <br>
+        <br>
+        <p style="font-size:large;"><h2>
+            <a href="viewRepairServiceList"><i class="text-secondary fas fa-arrow-left"></i></a> Viewlist</h2></p>
+            <br>       
         <form action="updateForm" method="post">
             @csrf
-            
+    
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Username&emsp;&ensp;</span>
@@ -73,11 +77,11 @@
             
             <br>
             <center>
-                <button type="submit" class="btn btn-warning">Update</button>
+                <button type="submit" class="btn btn-info text-white">Update</button>
             </center>
             
         </form>
-        
+    
     </div>
     <script>
         var msg = '{{Session::get('alert')}}';

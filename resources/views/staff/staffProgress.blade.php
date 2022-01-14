@@ -32,7 +32,10 @@
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
         <u style="font-size:large;"><h2>Tracking Status</h2></u> 
-        <br> 
+        <br>
+        <p style="font-size:large;"><h2>
+            <a href="sTrackList"><i class="text-secondary fas fa-arrow-left"></i></a> Tracking List</h2></p>
+            <br>
         <table border="1px solid black" style="margin-left:auto;margin-right:auto;">
                 <tr>
                     <th>Device</th>
@@ -63,7 +66,6 @@
                 @endforeach
         </table> 
         <br><br>
-        <center><a href="sTrackList"><button class="btn btn-warning">Back</button></a></center>
     </div>
 </body>
 </html>

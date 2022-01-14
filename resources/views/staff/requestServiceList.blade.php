@@ -32,7 +32,10 @@
     @include('layouts.navbar')
     <div class="container" style="margin-top: 30px">
         <u style="font-size:large;"><h2>Request Service List</h2></u> 
-        <br> 
+        <br>
+        <p style="font-size:large;"><h2>
+            <a href="/staffDashboard"><i class="text-secondary fas fa-arrow-left"></i></a> Back To Dashboard </h2></p>
+            <br> 
         <table border="1px">
                 <tr>
                     <th>No.</th>
@@ -42,33 +45,32 @@
                 </tr>
                 @php ($i = 1)
 
-                
+                @foreach ($info as $row1)
                 <tr>
                     <td><input type="text" value="{{$i}}" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$info1->username}}" name="username" class="noborder" readonly></td>
-                    <td><input type="text" value="{{$info1->device}}" name="device" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$row1->username}}" name="username" class="noborder" readonly></td>
+                    <td><input type="text" value="{{$row1->device}}" name="device" class="noborder" readonly></td>
                     <td>
                         <form action="viewUpdateForm" method="post">
                         @csrf
-                            <input type="hidden" value="{{$info1->id}}" name="id">
+                            <input type="hidden" value="{{$row1->id}}" name="id">
                             <button type="submit">View</button>
                         </form>
                         <form action="displayUpdateForm" method="post">
                         @csrf
-                        @if($info1->paymentStatus != 1)
-                            <input type="hidden" value="{{$info1->id}}" name="id">
-                            <button class="btn btn-warning" type="submit">Update</button>    
+                        @if($row1->paymentStatus != 1)
+                            <input type="hidden" value="{{$row1->id}}" name="id">
+                            <button class="btn btn-info text-white" type="submit">Update</button>    
                         @endif                    
                         </form>
                         
                     </td>
                 <tr>
                 @php ($i++)
-                
+                @endforeach
             </table> 
         <table border="1px">
     </div>
-    <a href="/staffDashboard"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';
