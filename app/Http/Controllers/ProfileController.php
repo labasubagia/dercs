@@ -53,14 +53,12 @@ class ProfileController extends Controller
     //update profile
     public function updateCustomerProfile(Request $req)
     {
-        $id = Auth::id(); //getCurrentUserID
-        $newUsername = $req->username;
-        $newEmail = $req->email;
-        $newPhone = $req->phoneNo;
-        $newAddress = $req->address;
-        $update = DB::select("update users set username = '$newUsername', email = '$newEmail', phoneNo = '$newPhone',
-                            address = '$newAddress' where id = '$id'");
-
+        User::where('id', Auth::id())->update([
+            'username' => $req->get('username'),
+            'email' => $req->get('email'),
+            'phoneNo' => $req->get('phoneNo'),
+            'address' => $req->get('address'),
+        ]);
         return redirect()->back()->with('alert', 'Updated!');
     }
 
