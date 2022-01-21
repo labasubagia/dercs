@@ -74,13 +74,12 @@ class ProfileController extends Controller
     //update profile
     public function updateRiderProfile(Request $req)
     {
-        $id = Auth::id();
-        $newUsername = $req->username;
-        $newEmail = $req->email;
-        $newPhone = $req->phoneNo;
-        $update = DB::select("update users set username = '$newUsername', email = '$newEmail',
-                            phoneNo = '$newPhone' where id = '$id'");
-
+        User::where('id', Auth::id())->update([
+            'username' => $req->get('username'),
+            'email' => $req->get('email'),
+            'phoneNo' => $req->get('phoneNo'),
+            'address' => $req->get('address'),
+        ]);
         return redirect()->back()->with('alert', 'Updated!');
     }
 
