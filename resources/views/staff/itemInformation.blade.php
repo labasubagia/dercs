@@ -32,8 +32,12 @@
     <div class="container topmargin">
         <u style="font-size:large;"><h2>Item Information</h2></u>
         <br>
+        <p style="font-size:large;"><h2>
+            <a href="viewRepairServiceList"><i class="text-secondary fas fa-arrow-left"></i></a> Viewlist</h2></p>
+            <br>
+
             <table>
-                
+
                 <tr>
                     <th>Username :</th>
                     <td><input type="text" value="{{$info->username}}" class="noborder" readonly></td>
@@ -66,10 +70,9 @@
                     <th>Detail :</th>
                     <td><input type="text" value="{{$info->detail}}" name="detail" class="noborder" readonly></td>
                 </tr>
-               
+
             </table>
             <br>
-        <center><a href="viewRepairServiceList"><button class="btn btn-warning">Okay</button></a></center><br><br><br>
     </div>
     <script>
         var msg = '{{Session::get('alert')}}';

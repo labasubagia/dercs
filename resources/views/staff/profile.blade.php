@@ -21,6 +21,9 @@
     <div class="container" style="margin-top: 30px">
         <u style="font-size:large;"><h2>Staff Profile</h2></u>
         <br>
+        <p style="font-size:large;"><h2>
+            <a href="/staffDashboard"><i class="text-secondary fas fa-arrow-left"></i></a> Back To Dashboard</h2></p>
+            <br>
         <form action="updatedCustomerProfile" method="post">
             @csrf
             <div class="input-group mb-3">
@@ -55,11 +58,10 @@
             </div>
             <br>
             <center>
-                <button type="submit" class="btn btn-warning">Update</button>
+                <button type="submit" class="btn btn-info text-white">Update</button>
             </center>
         </form>
     </div>
-    <a href="/staffDashboard"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';

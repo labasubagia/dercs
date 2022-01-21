@@ -36,6 +36,9 @@
     <div class="container topmargin">
         <u style="font-size:large;"><h2>Customer List</h2></u>
         <br>
+        <p style="font-size:large;"><h2>
+            <a href="/staffDashboard"><i class="text-secondary fas fa-arrow-left"></i></a> Back To Dashboard</h2></p>
+            <br>
             <table border="1px">
                 <tr>
                     <th>No.</th>
@@ -58,12 +61,12 @@
                     <form action="deleteCustomer" method="post">
                     @csrf
                         <input type="hidden" value="{{$row1->id}}" name="id">
-                        <td><button class="btn btn-light" onclick="return confirm('Confirm Delete?');"><i class="material-icons" style="font-size:36px; color:red">delete_forever</i></button></td>
+                        <td><button class="btn btn-info text-white" onclick="return confirm('Confirm Delete?');"><i class="material-icons" style="font-size:36px; color:red">delete_forever</i></button></td>
                     </form>
                     <form action="banCustomer" method="post">
                     @csrf
                         <input type="hidden" value="{{$row1->id}}" name="id">
-                        <td><button class="btn btn-light" onclick="return confirm('Confirm ban?');"><i class="fa fa-crosshairs" style="font-size:36px; color:red"></i></button></td>
+                        <td><button class="btn btn-info text-white" onclick="return confirm('Confirm ban?');"><i class="fa fa-crosshairs" style="font-size:36px; color:red"></i></button></td>
                     </form>
                 <tr>
                 @php ($i++)
@@ -92,7 +95,7 @@
                         <td><input type="text" value="{{$row2->username}}" name="username" class="noborder" readonly></td>
                         <td><input type="text" value="{{$row2->email}}" name="email" class="noborder" readonly></td>
                         <td><input type="text" value="{{$row2->phoneNo}}" name="phone" class="noborder" readonly></td>
-                        <td><button type="submit" class="btn btn-light" onclick="return confirm('Confirm removing banned?');"><i class="fas fa-hand-holding-heart" style="font-size:36px; color:red"></i></button></td>
+                        <td><button type="submit" class="btn btn-info text-white" onclick="return confirm('Confirm removing banned?');"><i class="fas fa-hand-holding-heart" style="font-size:36px; color:red"></i></button></td>
                     <tr>
                     @php ($i++)
                 </form>
@@ -100,7 +103,6 @@
             </table>
             <br>
     </div>
-    <a href="/staffDashboard"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>
         var msg = '{{Session::get('alert')}}';
         var exist = '{{Session::has('alert')}}';

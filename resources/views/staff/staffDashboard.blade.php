@@ -14,37 +14,36 @@
         <u style="font-size:large;"><h2>Staff Dashboard</h2></u>
         <br>       
         <div class="row">
-            <div class="col"><center>
+            <div class="col-6 mb-5"><center>
                 <h4> Customer Account</h4>
                 <i class="fa fa-user" aria-hidden="true" style='font-size:36px'></i>
                 <h5>{{$countuser}}</h5>
-                <center><a href="manageUsers"><button type="button" class="btn btn-warning">View Accounts</button></a></center>
+                <center><a href="manageUsers"><button type="button" class="btn btn-info text-white">View Accounts</button></a></center>
             </center></div>
 
-            <div class="col"><center>
+            <div class="col-6 mb-5"><center>
                 <h4>Requested Item List</h4>
                 <i class="fa fa-list-alt" aria-hidden="true" style='font-size:36px'></i>
                 <h5></h5>
                 <br>
-                <center><a href="viewRepairServiceList"><button type="button" class="btn btn-warning">View Requests</button></a></center>
+                <center><a href="viewRepairServiceList"><button type="button" class="btn btn-info text-white">View Requests</button></a></center>
             </center></div>
 
-            <div class="col"><center>
+            <div class="col-6 mb-5"><center>
                 <h4>Track Items</h4>
                 <i class="fa fa-map-marker" aria-hidden="true" style='font-size:36px'></i>
                 <h5></h5>
                 <br>
-                <center><a href="sTrackList"><button type="button" class="btn btn-warning">Track Item</button></a></center>
+                <center><a href="sTrackList"><button type="button" class="btn btn-info text-white">Track Item</button></a></center>
             </center></div>
-        </div>
-        <br><br><br>
 
-        <div class='row'>
-            <div class='col-lg-12'><center>
+        
+        <div class="col-6 mb-5"><center>
                 <h4>Manage Profile</h4>
                 <i class='fas fa-user-cog' style='font-size:36px'></i>
-                <br><br>
-                <a href="staffProfile"><button class="btn btn-warning">Manage Profile</button></a>
+                <h5></h5>
+                <br>
+                <a href="staffProfile"><button class="btn btn-info text-white">Manage Profile</button></a>
             </center></div>
         </div>       
     </div>
