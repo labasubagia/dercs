@@ -113,11 +113,7 @@ class ProfileController extends Controller
     //admin delete selected user
     public function deleteCustomer(Request $req)
     {
-        $deleteID = $req->id;
-        DB::table('users')
-            ->where('id', '=', $deleteID)
-            ->delete();
-
+        User::where('id', $req->get('id'))->delete();
         return $this->viewUsers();
     }
 
