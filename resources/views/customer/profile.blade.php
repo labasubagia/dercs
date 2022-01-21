@@ -15,45 +15,43 @@
     <div class="container" style="margin-top: 30px">
         <p style="font-size:large;"><h2>
             <a href="/customerHomepage"><i class="text-secondary fas fa-arrow-left"></i></a> Customer Profile</h2></p>
-        <br>       
+        <br>
         <form action="updatedCustomerProfile" method="post">
             @csrf
-            @foreach($customerInfo as $row)
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">User ID&emsp;&emsp;&emsp;&ensp;</span>
                 </div>
-                <input type="text" class="form-control" id="id" name="id" value="{{$row->id}}" readonly>
+                <input type="text" class="form-control" id="id" name="id" value="{{$customerInfo->id}}" readonly>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Username&emsp;&emsp;&nbsp;</span>
                 </div>
-                <input type="text" class="form-control" id="name" name="username" value="{{$row->username}}">
+                <input type="text" class="form-control" id="name" name="username" value="{{$customerInfo->username}}">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Email Address&ensp;</span>
                 </div>
-                <input type="text" class="form-control" id="email" name="email" value="{{$row->email}}">
+                <input type="text" class="form-control" id="email" name="email" value="{{$customerInfo->email}}">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Phone Number</span>
                 </div>
-                <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="{{$row->phoneNo}}">
+                <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="{{$customerInfo->phoneNo}}">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Address&emsp;&emsp;&emsp;</span>
                 </div>
-                <input type="text" class="form-control" id="address" name="address" value="{{$row->address}}">
+                <input type="text" class="form-control" id="address" name="address" value="{{$customerInfo->address}}">
             </div>
             <br>
             <center>
                 <button type="submit" class="btn btn-info text-white">Update</button>
             </center>
-            @endforeach
         </form>
     </div>
     <script>

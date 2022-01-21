@@ -35,9 +35,7 @@ class ProfileController extends Controller
     //view profile
     public function customerProfile()
     {
-        $id = Auth::id();
-        $customerInfo = DB::select("select * from users where id = '$id'");
-
+        $customerInfo = Auth::user();
         return view('customer.profile', compact('customerInfo'));
     }
 
@@ -58,9 +56,7 @@ class ProfileController extends Controller
     //view profile
     public function riderProfile()
     {
-        $id = Auth::id();
-        $riderInfo = DB::select("select * from users where id = '$id'");
-
+        $riderInfo = Auth::user();
         return view('rider.profile', compact('riderInfo'));
     }
 
@@ -80,9 +76,7 @@ class ProfileController extends Controller
     //view profile
     public function staffProfile()
     {
-        $id = Auth::id();
-        $staffInfo = DB::select("select * from users where id = '$id'");
-
+        $staffInfo = Auth::user();
         return view('staff.profile', compact('staffInfo'));
     }
 

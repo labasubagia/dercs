@@ -23,35 +23,33 @@
         <br>
         <form action="updatedRiderProfile" method="post">
             @csrf
-            @foreach($riderInfo as $row)
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">User ID&emsp;&emsp;&emsp;&ensp;</span>
                 </div>
-                <input type="text" class="form-control" id="id" name="id" value="{{$row->id}}" readonly>
+                <input type="text" class="form-control" id="id" name="id" value="{{$riderInfo->id}}" readonly>
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Username&emsp;&emsp;&nbsp;</span>
                 </div>
-                <input type="text" class="form-control" id="name" name="username" value="{{$row->username}}">
+                <input type="text" class="form-control" id="name" name="username" value="{{$riderInfo->username}}">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Email Address&ensp;</span>
                 </div>
-                <input type="text" class="form-control" id="email" name="email" value="{{$row->email}}">
+                <input type="text" class="form-control" id="email" name="email" value="{{$riderInfo->email}}">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text">Phone Number</span>
                 </div>
-                <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="{{$row->phoneNo}}">
+                <input type="text" class="form-control" id="phoneNo" name="phoneNo" value="{{$riderInfo->phoneNo}}">
             </div>
             <center>
                 <button type="submit" class="btn btn-info">Update</button>
             </center>
-            @endforeach
         </form>
     </div>
     <a href="/riderHomepage"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
