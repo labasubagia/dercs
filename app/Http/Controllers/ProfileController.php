@@ -120,20 +120,14 @@ class ProfileController extends Controller
     //admin ban selected user
     public function banCustomer(Request $req)
     {
-        $id = Auth::id();
-        $banID = $req->id;
-        $update = DB::select("update users set status = 1 where id = '$banID'");
-
+        User::where('id', $req->get('id'))->update(['status' => 1]);
         return $this->viewUsers();
     }
 
     //admin unban selected user
     public function unbanCustomer(Request $req)
     {
-        $id = Auth::id();
-        $unbanID = $req->id;
-        $update = DB::select("update users set status = 0 where id = '$unbanID'");
-
+        User::where('id', $req->get('id'))->update(['status' => 0]);
         return $this->viewUsers();
     }
 }
