@@ -105,8 +105,8 @@ class ProfileController extends Controller
     //admin view all users
     public function viewUsers()
     {
-        $goodCustomer = DB::select("select * from users where userType = 'Customer' AND status = 0");
-        $badCustomer = DB::select("select * from users where userType = 'Customer' AND status = 1");
+        $goodCustomer = User::where('userType', 'Customer')->where('status', 0)->get();
+        $badCustomer = User::where('userType', 'Customer')->where('status', 1)->get();
         return view('staff.manageUsers', compact('goodCustomer', 'badCustomer'));
     }
 
