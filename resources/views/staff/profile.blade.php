@@ -24,7 +24,7 @@
         <p style="font-size:large;"><h2>
             <a href="/staffDashboard"><i class="text-secondary fas fa-arrow-left"></i></a> Back To Dashboard</h2></p>
             <br>
-        <form action="updatedCustomerProfile" method="post">
+        <form action="updatedStaffProfile" method="post">
             @csrf
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
