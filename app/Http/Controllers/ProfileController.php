@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,15 +22,25 @@ class ProfileController extends Controller
     // Rider to upload license
     public function riderLicenseUpload(Request $req)
     {
-        $id = Auth::id();
+        DB::beginTransaction();
+        try {
+            if (!$req->hasFile('image')) {
+                throw new Exception('New Image should provided');
+            }
 
-        $imageName = $req->file('image')->getClientOriginalName();
-        $status = $req->status;
+            $imageName = $req->file('image')->getClientOriginalName();
+            $req->file('image')->storeAs('public/licenseImages/', $imageName);
 
-        $req->file('image')->storeAs('public/licenseImages/', $imageName);
-
-        $update = DB::select("update users set licensePhoto = '$imageName', status = '$status' where id = '$id'");
-        return redirect()->back()->with('success', 'License added successfully.');
+            User::where('id', Auth::id())->update([
+                'licensePhoto' => $imageName,
+                'status' => $req->get('status'),
+            ]);
+            DB::commit();
+            return redirect()->back()->with('msg', 'License upload success.');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->with('msg', 'License upload failed, ' . $th->getMessage());
+        }
     }
 
     //view profile

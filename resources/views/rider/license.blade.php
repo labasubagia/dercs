@@ -41,8 +41,8 @@
     </div>
     <a href="/riderHomepage"><button class="homepage"><i class='fas fa-home' style='font-size:36px'></i></button></a>
     <script>
-        var msg = '{{Session::get('success')}}';
-        var exist = '{{Session::has('success')}}';
+        var msg = '{{Session::get('msg')}}';
+        var exist = '{{Session::has('msg')}}';
         if(exist){
             alert(msg);
         }
