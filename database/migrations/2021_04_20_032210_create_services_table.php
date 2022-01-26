@@ -16,7 +16,7 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->integer('userID');
-            $table->string('username');
+            $table->string('username')->unique();
             $table->string('device');
             $table->string('symptom');
             $table->integer('status')->default(0);//rider gets job
